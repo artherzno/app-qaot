@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export class ButtonMain extends Component {
     render() {
-        const { navigation, color, circle, text, page } = this.props;
+        const { navigation, color, circle, jobname, page, info, dataKey} = this.props;
 
         const checkColor = (val) => {
             if(val==='A') {
@@ -24,7 +24,9 @@ export class ButtonMain extends Component {
             <TouchableOpacity
                 onPress={() => navigation.navigate(page, {
                     circle,
-                    text
+                    jobname,
+                    info,
+                    dataKey
                   })}
                 style={{
                     textShadowColor: 'rgba(0, 0, 0, 0.5)',
@@ -33,15 +35,15 @@ export class ButtonMain extends Component {
                 }}
                 >
                     <LinearGradient 
-                        colors={['#4472C4', '#4FD1FF', '#4472C4']}
+                        colors={['#4FD1FF', '#4472C4']}
                         start={[0, 0]}
-                        end={[1, 1]}
+                        end={[0, 1]}
                         location={[0.25, 0.4, 1]} 
                         style={[styles.btn, styles.btnBlue]}
                     >
                         <View style={{display: 'flex', flexDirection: 'row'}}>
                             <Text style={[styles.btnCircle, {backgroundColor: checkColor(circle)}]}>{circle}</Text>
-                            <Text style={[styles.btnText, {fontFamily:'kanit-medium'}]}>{text}</Text>
+                            <Text style={[styles.btnText, {fontFamily:'kanit-medium'}]}>{jobname}</Text>
                         </View>
                     </LinearGradient>
             </TouchableOpacity>
@@ -51,18 +53,21 @@ export class ButtonMain extends Component {
 
 const styles = StyleSheet.create({
     btn: {
-        borderRadius:100,
+        borderRadius: 30,
         textAlign: 'center',
         overflow: 'hidden',
         marginBottom: 10,
         minWidth: 280,
-        width: '100%'
+        width: '100%',
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: {width: 2, height: 2},
+        textShadowRadius: 1,
     },
     btnBlue: {
         backgroundColor: '#60C5EA'
     },
     btnCircle: {
-        borderRadius: 100,
+        borderRadius: 30,
         width: 30,
         maxWidth: 50,
         height: 50,
@@ -83,12 +88,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         lineHeight: 24,
         padding: 5,
-        paddingLeft: 10,
+        paddingLeft: 0,
         paddingRight: 10,
         textAlign: 'left',
         color: '#fff',
         textShadowColor: 'rgba(0, 0, 0, 0.5)',
-        textShadowOffset: {width: 2, height: 1},
+        textShadowOffset: {width: 1, height: 1},
         textShadowRadius: 1,
         flex: 4,
         textAlignVertical: 'auto',
